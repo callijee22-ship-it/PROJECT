@@ -1,0 +1,16 @@
+{
+  "version": "1.0",
+  "tables": {
+    "sessions": {"file": "sessions.csv", "primary_key": ["session_key"], "columns_source": "../standard_dictionary/column_dictionary.csv"},
+    "drivers": {"file": "drivers.csv", "primary_key": ["session_key", "driver_number"], "foreign_keys": ["sessions.session_key"]},
+    "laps": {"file": "laps.csv", "primary_key": ["session_key", "driver_number", "lap_number"], "foreign_keys": ["sessions.session_key"]},
+    "stints": {"file": "stints.csv", "primary_key": ["session_key", "driver_number", "stint_number"], "foreign_keys": ["sessions.session_key"]},
+    "pit": {"file": "pit.csv", "primary_key": ["session_key", "driver_number", "lap_number"], "foreign_keys": ["sessions.session_key"]},
+    "weather": {"file": "weather.csv", "primary_key": ["session_key", "date"], "foreign_keys": ["sessions.session_key"]}
+  },
+  "common_rules": {
+    "identifier_storage": "string",
+    "session_join_key": "session_key",
+    "meeting_key_is_session_key": false
+  }
+}
